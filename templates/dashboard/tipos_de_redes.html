@@ -1,0 +1,184 @@
+{% extends 'dashboard/base.html' %}
+
+{% comment %}
+===============================================
+MÓDULO 03: TIPOS DE REDES NEURONALES
+===============================================
+
+Página educativa sobre las 4 arquitecturas principales de redes neuronales.
+
+ARQUITECTURAS PRESENTADAS:
+
+1. REDES FEEDFORWARD (FNN)
+   - Tipo: Propagación unidireccional
+   - Características: Simple, fundamental, base de otras redes
+   - Casos de uso: Datos tabulares, clasificación simple
+   - Algoritmo: Retropropagación (backpropagation)
+
+2. REDES CONVOLUCIONALES (CNN)
+   - Tipo: Procesamiento de imágenes
+   - Características: Convoluciones, pooling, invariancia espacial
+   - Pionero: Yann LeCun (LeNet-5)
+   - Casos de uso: Visión computacional, reconocimiento facial
+   - Ejemplos: AlexNet, VGG, ResNet, EfficientNet
+
+3. REDES RECURRENTES (RNN)
+   - Tipo: Procesamiento de secuencias
+   - Características: Memoria temporal, ciclos, estado oculto
+   - Mejoras: LSTM, GRU, bidireccionales
+   - Casos de uso: NLP, audio, series temporales
+   - Aplicaciones: Traducción, generación de texto, reconocimiento de voz
+
+4. REDES GENERATIVAS ADVERSARIALES (GAN)
+   - Tipo: Redes competitivas
+   - Componentes: Generador vs Discriminador
+   - Creador: Ian Goodfellow (2014)
+   - Características: Equilibrio de Nash, generación de contenido
+   - Casos de uso: Síntesis de imágenes, deepfakes, aumento de datos
+   - Variantes: DCGAN, StyleGAN, CycleGAN, ProGAN
+
+CONTENIDO INCLUIDO:
+- Descripción detallada de cada arquitectura
+- Características principales
+- Casos de uso prácticos
+- Tabla comparativa
+
+OBJETIVOS DE APRENDIZAJE:
+- Distinguir arquitecturas por problema
+- Conocer fortalezas y limitaciones
+- Elegir red adecuada para cada tarea
+
+REQUISITO: Usuario debe estar autenticado
+{% endcomment %}
+{% block dashboard_content %}
+<!-- Contenedor de la página del dashboard -->
+<div class="dashboard-page">
+  <!-- ENCABEZADO: Módulo 03, título y descripción -->
+  <div class="dashboard-header">
+    <div>
+      <p class="dashboard-module">Módulo 03</p>
+      <h1>Tipos de <span class="text-primary">Redes Neuronales</span></h1>
+      <p class="dashboard-subtitle">
+        A lo largo de décadas de investigación, los científicos han desarrollado arquitecturas especializadas para diferentes tipos de problemas. Cada una tiene fortalezas, limitaciones y casos de uso ideales.
+      </p>
+    </div>
+  </div>
+
+  <!-- ROW DE PILLS: 4 etiquetas de los tipos de redes -->
+  <div class="dashboard-pill-row">
+    <span class="dashboard-pill" style="color: oklch(0.72 0.22 150); border: 1px solid oklch(0.72 0.22 150);">01 — Feedforward (FNN)</span>
+    <span class="dashboard-pill" style="color: oklch(0.69 0.22 220); border: 1px solid oklch(0.69 0.22 220);">02 — Convolucionales (CNN)</span>
+    <span class="dashboard-pill" style="color: oklch(0.72 0.22 150); border: 1px solid oklch(0.72 0.22 150);">03 — Recurrentes (RNN)</span>
+    <span class="dashboard-pill" style="color: oklch(0.69 0.22 220); border: 1px solid oklch(0.69 0.22 220);">04 — Adversariales (GAN)</span>
+  </div>
+
+  <!-- GRID: 4 cards con detalles de cada arquitectura de red -->
+  <div class="dashboard-grid" style="display: flex; flex-direction: column; gap: 2rem;">
+    <article class="dashboard-card card-hover border-glow" style="border-left: 4px solid oklch(0.72 0.22 150);">
+      <div class="card-header">
+        <span class="card-tag" style="color: oklch(0.72 0.22 150);">01</span>
+        <span class="card-subtitle">Redes de Propagación hacia Adelante</span>
+      </div>
+      <h2 style="color: oklch(0.72 0.22 150);">Redes Feedforward (FNN)</h2>
+      <p>Las redes feedforward son la arquitectura más simple y fundamental. En estas redes, la información fluye en una única dirección: desde la capa de entrada, a través de las capas ocultas, hasta la capa de salida. No existen ciclos ni conexiones hacia atrás.</p>
+      <p style="font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.8rem;">Características Principales</p>
+      <div class="card-list">
+        <p class="card-list-item">• También conocidas como Perceptrones Multicapa (MLP)</p>
+        <p class="card-list-item">• Cada neurona está completamente conectada con todas las neuronas de la capa siguiente</p>
+        <p class="card-list-item">• Usan funciones de activación como ReLU, Sigmoid o Tanh</p>
+        <p class="card-list-item">• Entrenadas con retropropagación y gradiente descendente</p>
+        <p class="card-list-item">• Son la base sobre la que se construyen arquitecturas más complejas</p>
+      </div>
+      <div class="card-usecase">
+        <span class="card-usecase-title" style="color: oklch(0.72 0.22 150);">Caso de Uso</span>
+        <p>Clasificación de correos como spam o no spam, predicción de precios de vivienda, detección de fraude bancario y diagnóstico médico basado en datos tabulares.</p>
+      </div>
+    </article>
+
+    <article class="dashboard-card card-hover border-glow" style="border-left: 4px solid oklch(0.69 0.22 220);">
+      <div class="card-header">
+        <span class="card-tag" style="color: oklch(0.69 0.22 220);">02</span>
+        <span class="card-subtitle">Convolutional Neural Networks</span>
+      </div>
+      <h2 style="color: oklch(0.69 0.22 220);">Redes Convolucionales (CNN)</h2>
+      <p>Las CNN están especialmente diseñadas para procesar datos con estructura de cuadrícula, como imágenes. Utilizan operaciones de convolución para detectar características locales (bordes, texturas, formas) independientemente de su posición en la imagen.</p>
+      <p style="font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.8rem;">Características Principales</p>
+      <div class="card-list">
+        <p class="card-list-item">• Capas convolucionales: detectan características mediante filtros aprendidos</p>
+        <p class="card-list-item">• Capas de pooling: reducen dimensionalidad preservando características clave</p>
+        <p class="card-list-item">• Invariancia a la traslación: detecta un gato sin importar dónde esté en la imagen</p>
+        <p class="card-list-item">• Arquitecturas famosas: LeNet, AlexNet, VGG, ResNet, EfficientNet</p>
+        <p class="card-list-item">• Yann LeCun fue pionero en su desarrollo para reconocimiento de dígitos escritos</p>
+      </div>
+      <div class="card-usecase">
+        <span class="card-usecase-title" style="color: oklch(0.69 0.22 220);">Caso de Uso</span>
+        <p>Reconocimiento facial, diagnóstico por imagen médica (detección de tumores en radiografías), conducción autónoma, búsqueda de imágenes y reconocimiento de objetos en tiempo real.</p>
+      </div>
+    </article>
+
+    <article class="dashboard-card card-hover border-glow" style="border-left: 4px solid oklch(0.72 0.22 150);">
+      <div class="card-header">
+        <span class="card-tag" style="color: oklch(0.72 0.22 150);">03</span>
+        <span class="card-subtitle">Recurrent Neural Networks</span>
+      </div>
+      <h2 style="color: oklch(0.72 0.22 150);">Redes Recurrentes (RNN)</h2>
+      <p>Las RNN están diseñadas para procesar secuencias de datos donde el orden importa. A diferencia de las FNN, tienen conexiones que forman ciclos, permitiendo que la información persista entre pasos de tiempo (memoria temporal).</p>
+      <p style="font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.8rem;">Características Principales</p>
+      <div class="card-list">
+        <p class="card-list-item">• Procesan secuencias de longitud variable: texto, audio, series de tiempo</p>
+        <p class="card-list-item">• Mantienen un estado oculto que actúa como "memoria" de la secuencia</p>
+        <p class="card-list-item">• LSTM (Long Short-Term Memory): soluciona el problema del gradiente que desaparece</p>
+        <p class="card-list-item">• GRU (Gated Recurrent Unit): versión simplificada y eficiente de las LSTM</p>
+        <p class="card-list-item">• Bidireccionales: procesan la secuencia en ambas direcciones para más contexto</p>
+      </div>
+      <div class="card-usecase">
+        <span class="card-usecase-title" style="color: oklch(0.72 0.22 150);">Caso de Uso</span>
+        <p>Traducción automática de idiomas, generación de texto, reconocimiento de voz, predicción del mercado financiero, análisis de sentimientos en reseñas y subtitulado automático de vídeos.</p>
+      </div>
+    </article>
+
+    <article class="dashboard-card card-hover border-glow" style="border-left: 4px solid oklch(0.69 0.22 220);">
+      <div class="card-header">
+        <span class="card-tag" style="color: oklch(0.69 0.22 220);">04</span>
+        <span class="card-subtitle">Generative Adversarial Networks</span>
+      </div>
+      <h2 style="color: oklch(0.69 0.22 220);">Redes Generativas Adversariales (GAN)</h2>
+      <p>Las GAN consisten en dos redes neuronales que compiten entre sí: un Generador que crea datos sintéticos y un Discriminador que intenta distinguir los datos reales de los falsos. Esta competición impulsa a ambas redes a mejorar continuamente.</p>
+      <p style="font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.8rem;">Características Principales</p>
+      <div class="card-list">
+        <p class="card-list-item">• Propuestas por Ian Goodfellow en 2014, revolucionaron la IA generativa</p>
+        <p class="card-list-item">• El Generador aprende a crear muestras cada vez más realistas</p>
+        <p class="card-list-item">• El Discriminador aprende a detectar falsificaciones cada vez mejor</p>
+        <p class="card-list-item">• Equilibrio de Nash: cuando el Generador engaña al Discriminador el 50% del tiempo</p>
+        <p class="card-list-item">• Variantes: DCGAN, StyleGAN, CycleGAN, Pix2Pix, ProGAN</p>
+      </div>
+      <div class="card-usecase">
+        <span class="card-usecase-title" style="color: oklch(0.69 0.22 220);">Caso de Uso</span>
+        <p>Generación de imágenes fotorrealistas de personas que no existen, conversión de bocetos a fotos, aumento de datos de entrenamiento, generación de arte, síntesis de voz y deepfakes.</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- TABLA COMPARATIVA: Resumen de características de los 4 tipos -->
+  <div class="dashboard-table-card">
+    <div class="table-header"><h2>Tabla Comparativa</h2></div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Fortaleza</th>
+            <th>Limitación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color: oklch(0.72 0.22 150);">FNN</td><td>Datos tabulares, versatilidad</td><td>No capta relaciones espaciales ni temporales</td></tr>
+          <tr><td style="color: oklch(0.69 0.22 220);">CNN</td><td>Imágenes, visión computacional</td><td>Costosas computacionalmente, requieren muchos datos</td></tr>
+          <tr><td style="color: oklch(0.72 0.22 150);">RNN/LSTM</td><td>Secuencias, texto, audio</td><td>Difícil paralelización, gradiente que desaparece</td></tr>
+          <tr><td style="color: oklch(0.69 0.22 220);">GAN</td><td>Generación de contenido realista</td><td>Entrenamiento inestable y colapso de modo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

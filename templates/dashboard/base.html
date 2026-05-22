@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% comment %}
+===============================================
+TEMPLATE BASE DEL DASHBOARD
+===============================================
+
+Template heredado de base.html que define la estructura del dashboard educativo.
+
+FUNCIONES PRINCIPALES:
+1. Proporciona estructura de dos columnas: sidebar + contenido
+2. Define la barra lateral (sidebar) con navegación
+3. Define barra superior (topbar) con info de usuario y controles
+4. Punto de herencia para todas las páginas del dashboard
+
+ESTRUCTURA:
+┌─────────────────────────────┐
+│  TopBar: Usuario, Tema      │
+├──────────┬──────────────────┤
+│ Sidebar  │  Contenido       │
+│ Menú     │  (bloque)        │
+│ Logout   │                  │
+└──────────┴──────────────────┘
+
+NAVEGACIÓN DEL SIDEBAR:
+1. Módulo 01: Definición de IA
+2. Módulo 02: Redes Neuronales
+3. Módulo 03: Tipos de Redes
+4. Módulo 04: Autores
+5. Cerrar Sesión (logout)
+
+REQUISITO:
+- Usuario DEBE estar autenticado (protegida por @login_required en views.py)
+- Si no está autenticado, redirige a /login/
+
+COMPONENTES INTERACTIVOS:
+- Botón hamburguesa: Toggle sidebar en móvil
+- Botón tema: Cambiar entre claro/oscuro (localStorage)
+- Links de navegación: Marcan activos según URL actual
+
+JAVASCRIPT ASOCIADO:
+- archivo: static/js/dashboard.js
+- Maneja: Sidebar móvil, tema claro/oscuro
+{% endcomment %}
+{% block title %}Dashboard — IA.edu{% endblock %}
+{% block content %}
+<!-- Contenedor principal del dashboard con layout de dos columnas -->
+<div class="dashboard-shell">
+  <!-- SIDEBAR: Barra lateral de navegación -->
+  <!-- Contiene logo, menú de módulos y botón de logout -->
+  <aside class="dashboard-sidebar" id="dashboard-sidebar">
+    <a href="/" class="dashboard-logo">
+      <i data-lucide="cpu" style="width: 2rem; height: 2rem; color: oklch(0.72 0.22 150); flex-shrink: 0; display: inline-block;"></i>
+      <span class="dashboard-logo-text"><span style="color: oklch(0.72 0.22 150);">IA</span><span class="text-foreground">.edu</span></span>
+    </a>
+    <!-- MENÚ PRINCIPAL: Enlaces a los 4 módulos educativos -->
+    <!-- La clase 'active' se aplica automáticamente según el URL actual -->
+    <nav class="dashboard-nav">
+      <a href="{% url 'dashboard' %}" class="dashboard-link{% if request.path == '/dashboard/' %} active{% endif %}">
+        <svg style="width: 1.2rem; height: 1.2rem; color: oklch(0.72 0.22 150); display: inline-block; margin-right: 0.8rem; vertical-align: middle; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5v14M9 5H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3m6-14h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3m0-14v14"></path></svg>
+        Definición de IA
+      </a>
+      <a href="{% url 'dashboard_redes_neuronales' %}" class="dashboard-link{% if request.path == '/dashboard/redes-neuronales/' %} active{% endif %}">
+        <svg style="width: 1.2rem; height: 1.2rem; color: oklch(0.72 0.22 150); display: inline-block; margin-right: 0.8rem; vertical-align: middle; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle><path d="M12 5v2M12 17v2M6.22 6.22l1.41 1.41M15.37 15.37l1.41 1.41M17.78 6.22l-1.41 1.41M8.63 15.37l-1.41 1.41"></path></svg>
+        Redes Neuronales
+      </a>
+      <a href="{% url 'dashboard_tipos_de_redes' %}" class="dashboard-link{% if request.path == '/dashboard/tipos-de-redes/' %} active{% endif %}">
+        <svg style="width: 1.2rem; height: 1.2rem; color: oklch(0.72 0.22 150); display: inline-block; margin-right: 0.8rem; vertical-align: middle; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><rect x="7" y="7" width="3" height="3"></rect><rect x="14" y="7" width="3" height="3"></rect><rect x="7" y="14" width="3" height="3"></rect><rect x="14" y="14" width="3" height="3"></rect></svg>
+        Tipos de Redes
+      </a>
+      <a href="{% url 'dashboard_autores' %}" class="dashboard-link{% if request.path == '/dashboard/autores/' %} active{% endif %}">
+        <svg style="width: 1.2rem; height: 1.2rem; color: oklch(0.72 0.22 150); display: inline-block; margin-right: 0.8rem; vertical-align: middle; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Autores
+      </a>
+    </nav>
+    <a href="{% url 'logout' %}" class="dashboard-logout">
+      <svg style="width: 1.2rem; height: 1.2rem; color: oklch(0.72 0.22 150); display: inline-block; margin-right: 0.8rem; vertical-align: middle; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"></path><polyline points="17 16 21 12 17 8"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+      Cerrar sesión
+    </a>
+  </aside>
+
+  <!-- ÁREA PRINCIPAL: Contenido dinámico del dashboard -->
+  <div class="dashboard-main">
+    <!-- BARRA SUPERIOR: Info de usuario, tema y estado -->
+    <header class="dashboard-topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+      <div class="dashboard-topbar-left">
+        <span class="dashboard-status-dot"></span>
+        <span class="dashboard-status-text">Panel de Aprendizaje</span>
+      </div>
+      <div class="dashboard-user">
+        <span class="dashboard-user-label">Bienvenido,</span>
+        <span class="dashboard-user-name">{{ request.user.first_name|default:request.user.username }}</span>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema"><i data-lucide="moon" style="width: 1.4rem; height: 1.4rem; display: inline-block;"></i></button>
+    </header>
+
+    <!-- CONTENIDO DEL DASHBOARD: Cada módulo se renderiza aquí -->
+    <!-- Las páginas heredan de este template y llenan el bloque 'dashboard_content' -->
+    <main class="dashboard-content">{% block dashboard_content %}{% endblock %}</main>
+  </div>
+</div>
+
+{% endblock %}

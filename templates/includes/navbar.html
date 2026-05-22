@@ -1,0 +1,76 @@
+{% comment %}
+===============================================
+BARRA DE NAVEGACIÓN PRINCIPAL (Include)
+===============================================
+
+Componente reutilizable que define la navegación del sitio.
+
+COMPONENTES:
+1. LOGO: Link a página de inicio
+2. BOTÓN HAMBURGUESA: Toggle menú móvil (hidden en desktop)
+3. MENÚ DESKTOP: Visible en pantallas grandes
+   - Enlaces: Inicio, IA, Autores, Dashboard
+   - Autenticación: Login/Logout según estado
+4. MENÚ MÓVIL: Hidden por defecto, abierto por hamburguesa
+5. BOTÓN TEMA: Toggle entre claro/oscuro
+
+FUNCIONALIDADES:
+- Responsive design: hamburguesa en móvil, menú completo en desktop
+- Menú móvil se cierra al hacer clic en un enlace (UX mejorada)
+- Indicadores de accesibilidad: aria-expanded, aria-hidden
+- Ícono de tema (Lucide) que actualiza dinámicamente
+
+JAVASCRIPT ASOCIADO:
+- archivo: static/js/navbar.js
+- Maneja: Toggle hamburguesa, cerrar menú, accesibilidad
+
+ESTADO DINÁMICO:
+- {% if request.user.is_authenticated %}: Muestra logout o login según sesión
+- Links se adaptan si usuario está autenticado
+{% endcomment %}
+<header class="site-header">
+  <!-- Contenedor: Limita ancho máximo y centra contenido -->
+  <div class="nav-container">
+    <a href="/" class="brand">
+      <i data-lucide="cpu" style="width: 2rem; height: 2rem; color: oklch(0.72 0.22 150); flex-shrink: 0; display: inline-block;"></i>
+      <span class="brand-text"><span style="color: oklch(0.72 0.22 150);">IA</span><span class="brand-text-contrast">.edu</span></span>
+    </a>
+
+    <!-- BOTÓN HAMBURGUESA: Toggle menú móvil -->
+    <!-- Hidden en desktop, visible en móvil -->
+    <button id="navbar-toggle" class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="mobile-toggle-bar"></span>
+      <span class="mobile-toggle-bar"></span>
+      <span class="mobile-toggle-bar"></span>
+    </button>
+
+    <!-- MENÚ DESKTOP: Visible en pantallas grandes -->
+    <nav class="desktop-nav">
+      <a class="nav-link" href="{% url 'home' %}#inicio">Inicio</a>
+      <a class="nav-link" href="{% url 'home' %}#ia">IA</a>
+      <a class="nav-link" href="{% url 'home' %}#autores">Autores</a>
+      {% if request.user.is_authenticated %}
+        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+        <a class="nav-link nav-link-cta" href="{% url 'logout' %}">Cerrar sesión</a>
+      {% else %}
+        <a class="nav-link nav-link-cta" href="{% url 'login' %}">Login</a>
+      {% endif %}
+    </nav>
+    <!-- BOTÓN TEMA: Toggle entre claro/oscuro -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema"><i data-lucide="moon" style="width: 1.4rem; height: 1.4rem; display: inline-block;"></i></button>
+  </div>
+
+  <!-- MENÚ MÓVIL: Desplegable solo en dispositivos móviles -->
+  <!-- Controlado por script navbar.js -->
+  <div id="navbar-menu" class="mobile-menu" aria-hidden="true">
+    <a class="mobile-menu-link" href="{% url 'home' %}#inicio">Inicio</a>
+    <a class="mobile-menu-link" href="{% url 'home' %}#ia">IA</a>
+    <a class="mobile-menu-link" href="{% url 'home' %}#autores">Autores</a>
+    {% if request.user.is_authenticated %}
+      <a class="mobile-menu-link" href="{% url 'dashboard' %}">Dashboard</a>
+      <a class="mobile-menu-link mobile-menu-link-cta" href="{% url 'logout' %}">Cerrar sesión</a>
+    {% else %}
+      <a class="mobile-menu-link mobile-menu-link-cta" href="{% url 'login' %}">Login</a>
+    {% endif %}
+  </div>
+</header>

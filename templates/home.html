@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% comment %}
+===============================================
+PÁGINA DE INICIO — IA.edu
+===============================================
+
+Página principal (home) del sitio web educativo.
+
+FUNCIONES PRINCIPALES:
+1. Presentar la plataforma con un hero visual impactante
+2. Explicar qué es la Inteligencia Artificial
+3. Mostrar características destacadas de la plataforma
+4. Listar autores e historiadores claves de la IA
+5. Invitar usuarios a registrarse o iniciar sesión
+
+ESTRUCTURA:
+- Sección Hero: Portada con imagen y CTA (Call To Action)
+- Sección de Fundamentos: Explica IA a usuarios novatos
+- Sección de Pioneros: Muestra autores históricos de la IA
+
+VISIBILIDAD: Accesible para usuarios NO autenticados
+
+COMPONENTES REUTILIZABLES:
+- Cards de características
+- Cards de autores
+- Botones de acción
+{% endcomment %}
+
+{% block title %}IA Educativa — Explorando la Inteligencia Artificial{% endblock %}
+{% block content %}
+<!-- SECCIÓN 1: HERO (Portada Principal) -->
+<!-- Presenta la plataforma con visual impactante, botones de acción y efectos glassmorphism -->
+<section id="inicio" class="section-hero grid-bg">
+  <div class="hero-ambient">
+    <span class="hero-glow hero-glow-primary"></span>
+    <span class="hero-glow hero-glow-secondary"></span>
+  </div>
+
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span>Plataforma Educativa</span>
+        </div>
+        <h1 class="hero-title">
+          Explorando la <span class="text-primary text-glow-green">Inteligencia</span>
+          <span class="text-secondary text-glow-cyan">Artificial</span>
+        </h1>
+        <p class="hero-description">
+          Descubre el fascinante mundo de la IA: desde sus fundamentos históricos hasta las redes neuronales más avanzadas.
+          Una guía completa para entender la tecnología que está transformando el mundo.
+        </p>
+
+        <div class="hero-actions">
+          {% if user.is_authenticated %}
+            <a class="button button-primary glow-green" href="/dashboard/">
+              Ir al Dashboard
+              <span class="button-icon">→</span>
+            </a>
+          {% else %}
+            <a class="button button-primary glow-green" href="/login/">
+              Iniciar sesión
+              <span class="button-icon">→</span>
+            </a>
+          {% endif %}
+          
+          <a class="button button-secondary" href="/#ia">Explorar contenido</a>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="hero-card">
+          <img src="{% static 'img/robot.png' %}" alt="Robot de Inteligencia Artificial" class="hero-image" />
+          <div class="hero-card-overlay"></div>
+          <div class="hero-card-corner hero-card-corner-left-top"></div>
+          <div class="hero-card-corner hero-card-corner-right-top"></div>
+          <div class="hero-card-corner hero-card-corner-left-bottom"></div>
+          <div class="hero-card-corner hero-card-corner-right-bottom"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <a href="/#ia" class="scroll-link">
+        <span>Continuar</span>
+        <span class="scroll-icon">⌄</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 2: ¿QUÉ ES LA INTELIGENCIA ARTIFICIAL? -->
+<!-- Explica conceptos básicos con tarjetas de características -->
+<section id="ia" class="section section-soft">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">— Fundamentos —</span>
+      <h2>¿Qué es la <span class="text-primary">Inteligencia Artificial</span>?</h2>
+    </div>
+
+    <div class="section-grid">
+      <div class="section-copy">
+        <p>
+          La <strong>Inteligencia Artificial (IA)</strong> es la rama de la informática que estudia cómo crear sistemas capaces de realizar tareas que normalmente requieren inteligencia humana: razonar, aprender, planificar, percibir el entorno y comprender el lenguaje.
+        </p>
+        <p>
+          Desde los años 50, científicos visionarios han trabajado para dotar a las máquinas de capacidades cognitivas. Hoy, la IA impulsa desde los motores de búsqueda hasta los vehículos autónomos, pasando por los sistemas de diagnóstico médico y los asistentes virtuales.
+        </p>
+        <p>
+          Su relevancia radica en su capacidad transformadora: la IA no solo automatiza tareas repetitivas, sino que abre nuevas fronteras del conocimiento científico y permite resolver problemas que antes eran inabordables para los humanos.
+        </p>
+
+        <div class="quote-card">
+          <p class="quote-text">
+            "La IA es probablemente la tecnología más transformadora de nuestra era, con el potencial de abordar los mayores desafíos de la humanidad."
+          </p>
+          <p class="quote-author">— Stuart Russell</p>
+        </div>
+      </div>
+
+      <div class="section-cards">
+        <article class="feature-card card-hover border-glow">
+          <div class="feature-icon feature-icon-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C8 2 5 5 5 9c0 3 1.5 5 3.5 6.5V18a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2.5C17.5 14 19 12 19 9c0-4-3-7-7-7Z" />
+              <path d="M12 7a2 2 0 0 0-2 2" />
+              <path d="M12 7a2 2 0 0 1 2 2" />
+            </svg>
+          </div>
+          <div>
+            <h3>Aprendizaje Automático</h3>
+            <p>Sistemas que aprenden de datos sin ser programados explícitamente.</p>
+          </div>
+        </article>
+        <article class="feature-card card-hover border-glow">
+          <div class="feature-icon feature-icon-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="6" cy="6" r="2" />
+              <circle cx="18" cy="6" r="2" />
+              <circle cx="12" cy="18" r="2" />
+              <path d="M8 6h8" />
+              <path d="M6 8v8" />
+              <path d="M18 8v8" />
+            </svg>
+          </div>
+          <div>
+            <h3>Procesamiento Inteligente</h3>
+            <p>Capacidad de analizar, razonar y tomar decisiones complejas.</p>
+          </div>
+        </article>
+        <article class="feature-card card-hover border-glow">
+          <div class="feature-icon feature-icon-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+          </div>
+          <div>
+            <h3>Impacto Global</h3>
+            <p>Transforma medicina, ciencia, industria y comunicación humana.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 3: AUTORES Y PIONEROS DE LA IA -->
+<!-- Muestra los científicos históricos que fundaron el campo -->
+<section id="autores" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">— Pioneros —</span>
+      <h2>Autores <span class="text-secondary">Destacados</span></h2>
+      <p class="section-intro">
+        Las mentes brillantes que dieron forma al campo de la Inteligencia Artificial y sentaron las bases del mundo digital moderno.
+      </p>
+    </div>
+
+    <div class="author-grid">
+      <article class="author-card card-hover border-glow">
+        <div class="author-image">
+          <img src="{% static 'img/alan.png' %}" alt="Alan Turing" />
+          <div class="author-tag author-tag-primary">Prueba de Turing</div>
+        </div>
+        <div class="author-content">
+          <p class="author-years">1912 – 1954</p>
+          <h3>Alan Turing</h3>
+          <p class="author-role">Padre de la Computación</p>
+          <p>
+            Matemático británico que propuso la idea de una "máquina universal" capaz de simular cualquier proceso computacional. Su famosa Prueba de Turing (1950) planteó la pregunta central de la IA: ¿puede una máquina imitar el comportamiento inteligente humano?
+          </p>
+        </div>
+      </article>
+
+      <article class="author-card card-hover border-glow">
+        <div class="author-image">
+          <img src="{% static 'img/john.png' %}" alt="John McCarthy" />
+          <div class="author-tag author-tag-primary">Fundador del término IA</div>
+        </div>
+        <div class="author-content">
+          <p class="author-years">1927 – 2011</p>
+          <h3>John McCarthy</h3>
+          <p class="author-role">Fundador de la IA</p>
+          <p>
+            Científico informático estadounidense que acuñó el término "Inteligencia Artificial" en 1956. Organizó la histórica Conferencia de Dartmouth, considerada el nacimiento oficial del campo. Creó también el lenguaje de programación LISP.
+          </p>
+        </div>
+      </article>
+
+      <article class="author-card card-hover border-glow">
+        <div class="author-image">
+          <img src="{% static 'img/stuart.png' %}" alt="Stuart Russell" />
+          <div class="author-tag author-tag-primary">Agentes Racionales</div>
+        </div>
+        <div class="author-content">
+          <p class="author-years">1962 – presente</p>
+          <h3>Stuart Russell</h3>
+          <p class="author-role">Teórico de Agentes Inteligentes</p>
+          <p>
+            Profesor de Berkeley y coautor del libro "Artificial Intelligence: A Modern Approach". Su trabajo en agentes inteligentes y toma de decisiones bajo incertidumbre es referencia mundial.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+{% endblock %}

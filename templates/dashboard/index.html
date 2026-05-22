@@ -1,0 +1,192 @@
+{% extends 'dashboard/base.html' %}
+
+{% comment %}
+===============================================
+MÓDULO 01: DEFINICIÓN DE IA
+===============================================
+
+Página educativa sobre la definición de Inteligencia Artificial.
+
+CONTENIDO:
+1. Definición general de IA
+2. Perspectivas históricas de 3 pioneros:
+   - Alan Turing (1950): Prueba de Turing
+   - John McCarthy (1956): Conferencia de Dartmouth
+   - Stuart Russell (1995): Agentes Racionales
+   - Perspectiva moderna integral
+3. Timeline interactivo: Hitos históricos de IA (1950-2022)
+4. Aplicaciones actuales: 6 campos principales
+
+OBJETIVOS DE APRENDIZAJE:
+- Entender qué es la Inteligencia Artificial
+- Conocer las definiciones de los pioneros
+- Ver la evolución histórica del campo
+- Reconocer aplicaciones prácticas modernas
+
+INTERACTIVIDAD:
+- Timeline de eventos históricos
+- Cards de definiciones por pionero
+- Estructura clara y visual
+
+REQUISITO: Usuario debe estar autenticado
+{% endcomment %}
+{% block dashboard_content %}
+<!-- Contenedor de la página del dashboard -->
+<div class="dashboard-page">
+  <!-- ENCABEZADO: Módulo, título y descripción -->
+  <div class="dashboard-header">
+    <div>
+      <p class="dashboard-module">Módulo 01</p>
+      <h1>Definición de <span class="text-primary">Inteligencia Artificial</span></h1>
+      <p class="dashboard-subtitle">
+        La Inteligencia Artificial no tiene una definición única universal. A lo largo de la historia, diferentes científicos y filósofos han propuesto enfoques que reflejan tanto la evolución de la tecnología como la comprensión cambiante de la inteligencia misma.
+      </p>
+    </div>
+  </div>
+
+  <!-- BLOQUE 1: Explicación de qué es IA -->
+  <div class="dashboard-block">
+    <h2>¿Qué es la Inteligencia Artificial?</h2>
+    <p>
+      La <strong>Inteligencia Artificial (IA)</strong> es la rama de la ciencia computacional que estudia cómo crear sistemas capaces de realizar tareas que normalmente requieren inteligencia humana. Esto incluye el razonamiento, el aprendizaje a partir de la experiencia, la comprensión del lenguaje natural, el reconocimiento de patrones visuales y la toma de decisiones complejas.
+    </p>
+    <p>
+      Desde sus inicios formales en los años 50, la IA ha evolucionado de simples reglas lógicas programadas manualmente hasta sistemas de deep learning capaces de superar a los humanos en tareas específicas como el juego de Go, el diagnóstico médico o la traducción de idiomas.
+    </p>
+    <p>
+      La IA no es una tecnología única, sino un campo interdisciplinario que combina matemáticas, estadística, neurociencia, lingüística, filosofía e ingeniería para crear sistemas cada vez más sofisticados que amplían las capacidades humanas.
+    </p>
+  </div>
+
+  <!-- SECCIÓN: Definiciones históricas de IA -->
+  <div class="dashboard-section-title">
+    <h2>Perspectivas de los Pioneros</h2>
+  </div>
+
+  <!-- GRID: 4 cards con definiciones de IA según diferentes perspectivas -->
+  <div class="dashboard-grid dashboard-grid-pioneers">
+    <article class="dashboard-card card-hover card-color-1">
+      <div class="card-header">
+        <div style="display: inline-block; line-height: 1; margin-right: 0.6rem; color: oklch(0.69 0.22 145);">
+          <i data-lucide="brain"></i>
+        </div>
+        <h3 style="color: white;">Definición de Alan Turing (1950)</h3>
+      </div>
+      <p>
+        En su artículo "Computing Machinery and Intelligence", Turing propuso la pregunta: "¿Pueden pensar las máquinas?" Diseñó la Prueba de Turing: si una máquina puede mantener una conversación que sea indistinguible de la de un humano, podría considerarse inteligente. Este marco conceptual definió décadas de investigación en IA.
+      </p>
+    </article>
+
+    <article class="dashboard-card card-hover card-color-2">
+      <div class="card-header">
+        <div style="display: inline-block; line-height: 1; margin-right: 0.6rem; color: oklch(0.69 0.22 220);">
+          <i data-lucide="book-open"></i>
+        </div>
+        <h3 style="color: white;">Definición de John McCarthy (1956)</h3>
+      </div>
+      <p>
+        McCarthy, en la Conferencia de Dartmouth de 1956, definió la Inteligencia Artificial como "la ciencia e ingeniería de hacer máquinas inteligentes, especialmente programas informáticos inteligentes". Esta definición fundacional estableció la IA como disciplina científica independiente y trazó el camino para décadas de investigación.
+      </p>
+    </article>
+
+    <article class="dashboard-card card-hover card-color-1">
+      <div class="card-header">
+        <div style="display: inline-block; line-height: 1; margin-right: 0.6rem; color: oklch(0.69 0.22 145);">
+          <i data-lucide="target"></i>
+        </div>
+        <h3 style="color: white;">Definición de Stuart Russell (1995)</h3>
+      </div>
+      <p>
+        En su libro "Artificial Intelligence: A Modern Approach", Russell define la IA desde la perspectiva de los agentes racionales: sistemas que perciben su entorno y actúan para maximizar el logro de sus objetivos. Esta visión moderna integra probabilidad, aprendizaje automático y toma de decisiones bajo incertidumbre.
+      </p>
+    </article>
+
+    <article class="dashboard-card card-hover card-color-2">
+      <div class="card-header">
+        <div style="display: inline-block; line-height: 1; margin-right: 0.6rem; color: oklch(0.69 0.22 220);">
+          <i data-lucide="lightbulb"></i>
+        </div>
+        <h3 style="color: white;">Definición Moderna Integral</h3>
+      </div>
+      <p>
+        Actualmente, la IA se define como el conjunto de teorías y técnicas que permiten a las máquinas simular la inteligencia humana: razonar, aprender de la experiencia, adaptarse a nuevas situaciones, entender el lenguaje natural, reconocer patrones, resolver problemas complejos y realizar tareas que históricamente requerían inteligencia humana.
+      </p>
+    </article>
+  </div>
+
+  <!-- BLOQUE 2: Timeline de eventos históricos -->
+  <div class="dashboard-block">
+    <h2>Hitos Históricos de la IA</h2>
+    <!-- Timeline interactivo: Eventos clave en la historia de la IA -->
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-step">1950</div>
+        <p>Alan Turing publica "Computing Machinery and Intelligence" y propone la Prueba de Turing.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-step">1956</div>
+        <p>John McCarthy acuña el término "Inteligencia Artificial" en la Conferencia de Dartmouth.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-step">1969</div>
+        <p>Shakey, el primer robot móvil con razonamiento, es desarrollado en Stanford.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-step">1986</div>
+        <p>Geoffrey Hinton populariza la retropropagación para entrenar redes neuronales.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-step">1997</div>
+        <p>Deep Blue de IBM vence al campeón mundial de ajedrez Garry Kasparov.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-step">2012</div>
+        <p>AlexNet de Krizhevsky, Sutskever e Hinton revoluciona el reconocimiento de imágenes con deep learning.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-step">2016</div>
+        <p>AlphaGo de DeepMind vence al campeón mundial del juego de Go, Lee Sedol.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-step">2022</div>
+        <p>ChatGPT de OpenAI alcanza 100 millones de usuarios en 2 meses, la app de más rápido crecimiento.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: Aplicaciones prácticas de la IA actualmente -->
+  <div class="dashboard-section-title">
+    <h2>Aplicaciones Actuales de la IA</h2>
+  </div>
+
+  <!-- GRID 3x2: 6 aplicaciones de IA en campos distintos -->
+  <div class="dashboard-grid dashboard-grid-3">
+    <article class="dashboard-card card-hover border-glow">
+      <p class="dashboard-tag"><span class="text-primary">Medicina</span></p>
+      <p>Diagnóstico por imágenes, descubrimiento de fármacos.</p>
+    </article>
+    <article class="dashboard-card card-hover border-glow">
+      <p class="dashboard-tag"><span class="text-primary">Transporte</span></p>
+      <p>Vehículos autónomos, optimización de rutas.</p>
+    </article>
+    <article class="dashboard-card card-hover border-glow">
+      <p class="dashboard-tag"><span class="text-primary">Lenguaje</span></p>
+      <p>Traductores automáticos, asistentes virtuales.</p>
+    </article>
+    <article class="dashboard-card card-hover border-glow">
+      <p class="dashboard-tag"><span class="text-primary">Finanza</span></p>
+      <p>Detección de fraudes, trading algorítmico.</p>
+    </article>
+    <article class="dashboard-card card-hover border-glow">
+      <p class="dashboard-tag"><span class="text-primary">Arte</span></p>
+      <p>Generación de imágenes, música y texto por IA.</p>
+    </article>
+    <article class="dashboard-card card-hover border-glow">
+      <p class="dashboard-tag"><span class="text-primary">Ciencia</span></p>
+      <p>Plegamiento de proteínas, modelado climático.</p>
+    </article>
+  </div>
+</div>
+
+
+{% endblock %}

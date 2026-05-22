@@ -1,0 +1,86 @@
+{% comment %}
+===============================================
+TEMPLATE BASE — IA.edu
+===============================================
+
+Template base (plantilla principal) que sirve como estructura fundamental para todas las páginas del sitio.
+
+FUNCIONES PRINCIPALES:
+- Define la estructura HTML5 global
+- Carga estilos CSS globales y bibliotecas (Lucide icons)
+- Carga scripts JavaScript del sitio
+- Proporciona bloques de contenido reutilizables para otros templates
+
+BLOQUES DISPONIBLES PARA HERENCIA:
+- {% block title %}: Título de la página (mostrado en pestaña del navegador)
+- {% block content %}: Contenido principal de cada página
+- {% block extra_scripts %}: Scripts adicionales por página (si se necesita)
+
+USO:
+Cualquier template heredará de este archivo usando:
+  {% extends 'base.html' %}
+  {% block content %}
+    Tu contenido aquí
+  {% endblock %}
+
+COMPONENTES INCLUIDOS:
+- Navbar: Barra de navegación principal (archivo includes/navbar.html)
+- Footer: Pie de página (archivo includes/footer.html)
+- Lucide Icons: Librería de iconos SVG del lado del cliente
+{% endcomment %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- ===== META TAGS — Información del documento ===== -->
+    <meta charset="utf-8" />
+    <!-- Charset UTF-8: Soporta caracteres especiales españoles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Viewport: Optimizar para dispositivos móviles y responsive design -->
+    <title>{% block title %}IA Educativa — Explorando la Inteligencia Artificial{% endblock %}</title>
+    <!-- Descripción para buscadores (SEO) -->
+    <meta
+      name="description"
+      content="Plataforma educativa sobre Inteligencia Artificial: redes neuronales, tipos de redes y los autores más destacados del campo."
+    />
+    <!-- Palabras clave para buscadores (SEO) -->
+    <meta
+      name="keywords"
+      content="inteligencia artificial, redes neuronales, machine learning, deep learning, educación"
+    />
+    
+    <!-- ===== CARGAR ARCHIVOS ESTÁTICOS ===== -->
+    {% load static %}
+    <!-- Estilos CSS globales: Contiene toda la decoración visual del sitio -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <!-- CUERPO DEL DOCUMENTO -->
+  <body class="bg-background font-sans antialiased">
+    <!-- Contenedor principal del sitio -->
+    <div class="site-shell">
+      <!-- Navbar: Barra de navegación (oculta en dashboard si hide_navbar=True) -->
+      {% if not hide_navbar %}
+        {% include 'includes/navbar.html' %}
+      {% endif %}
+      
+      <!-- Contenido principal: Cada página renderiza aquí -->
+      <main class="site-main">{% block content %}{% endblock %}</main>
+      
+      <!-- Footer: Pie de página con información del sitio -->
+      {% include 'includes/footer.html' %}
+    </div>
+    
+    <!-- ===== SCRIPTS JAVASCRIPT GLOBALES ===== -->
+    <!-- Funcionalidades de la navbar (menú móvil, tema) -->
+    <script src="{% static 'js/navbar.js' %}"></script>
+    <!-- Funcionalidades del dashboard (sidebar, tema) -->
+    <script src="{% static 'js/dashboard.js' %}"></script>
+  </body>
+  
+  <!-- Lucide Icons: Librería de iconos SVG -->
+  <!-- Permite usar <i data-lucide="nombre_icono"></i> en los templates -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // Inicializar iconos de Lucide en el documento
+    lucide.createIcons();
+  </script>
+</html>

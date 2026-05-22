@@ -1,0 +1,64 @@
+{% comment %}
+===============================================
+PIE DE PÁGINA / FOOTER (Include)
+===============================================
+
+Componente reutilizable que aparece al final de cada página.
+
+CONTENIDO:
+1. Logo/Marca: IA.edu
+2. Información del proyecto:
+   - Estudiante: Alarcón, Lara
+   - Materia: Práctica Profesionalizante 1
+   - Instituto: ESIM
+   - Año: 2026
+3. Copyright: © 2026 IA.edu
+4. Nota: Indicar que es con fines educativos
+
+SECCIONES:
+- Footer Brand: Logo y nombre del sitio
+- Footer Info: Detalles del autor y proyecto
+- Footer Right: Copyright y derechos
+- Footer Divider: Separador visual
+- Footer Note: Nota de derechos reservados
+
+TIPO: Componente estático reutilizado en todas las páginas
+{% endcomment %}
+<footer class="site-footer">
+  <!-- Contenedor principal del footer -->
+  <div class="footer-inner">
+    <!-- SECCIÓN 1: Marca/Logo del sitio -->
+    <div class="footer-brand">
+      <i data-lucide="cpu" style="width: 2rem; height: 2rem; color: oklch(0.72 0.22 150); flex-shrink: 0; display: inline-block;"></i>
+      <span class="brand-text footer-brand-text">IA<span class="brand-text-contrast">.edu</span></span>
+    </div>
+
+    <!-- SECCIÓN 2: Información del proyecto y autor -->
+    <div class="footer-info">
+      <p>Estudiante: <strong>Alarcón, Lara</strong></p>
+      <p>Materia: Práctica Profesionalizante 1</p>
+      <p>Instituto: ESIM — Año 2026</p>
+    </div>
+
+    <!-- SECCIÓN 3: Copyright y derechos -->
+    <div class="footer-right">
+      <div>
+        <p>Plataforma Educativa</p>
+        <p class="footer-copy-right">© 2026 IA.edu</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Separador visual -->
+  <div class="footer-divider"></div>
+  <!-- NOTA: Indicar propósito educativo y derechos -->
+  <p class="footer-note">
+    Construido con fines educativos · Todos los derechos reservados
+  </p>
+
+<script>
+    // Inicializar iconos de Lucide en el documento
+    lucide.createIcons();
+  </script>
+
+</footer>

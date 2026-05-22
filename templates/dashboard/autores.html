@@ -1,0 +1,204 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% comment %}
+===============================================
+MÓDULO 04: AUTORES Y PIONEROS DE LA IA
+===============================================
+
+Página educativa que presenta los científicos más influyentes del campo de IA.
+
+AUTORES PRESENTADOS:
+1. Geoffrey Hinton (1947): Padrino del Deep Learning
+2. Yann LeCun (1960): Padre de las Redes Convolucionales
+3. Yoshua Bengio (1964): Pionero del Aprendizaje Profundo
+4. Andrew Ng (1976): El Gran Educador de la IA
+5. Fei-Fei Li (1976): Pionera de Visión por Computadora
+
+CARACTERÍSTICAS DE CADA PERFIL:
+- Foto del autor
+- Fecha y lugar de nacimiento
+- Rol histórico
+- Tags de especialidades
+- Premio o reconocimiento
+- Biografía profesional
+- Lista de contribuciones clave
+
+OBJETIVOS DE APRENDIZAJE:
+- Conocer los pioneros de la IA
+- Entender sus contribuciones históricas
+- Valorar el impacto de su trabajo
+- Inspirarse en trayectorias profesionales
+
+DISEÑO:
+- Grid responsivo de perfiles
+- Cards con información completa
+- Colores distintivos por autor
+- Efectos hover y glow
+
+REQUISITO: Usuario debe estar autenticado
+{% endcomment %}
+{% block dashboard_content %}
+<!-- Contenedor de la página del dashboard -->
+<div class="dashboard-page">
+  <!-- ENCABEZADO: Módulo 04, título y descripción -->
+  <div class="dashboard-header">
+    <div>
+      <p class="dashboard-module">Módulo 04</p>
+      <h1>Autores y <span class="text-secondary">Pioneros</span> de la IA</h1>
+      <p class="dashboard-subtitle">
+        Conoce las contribuciones de los científicos que han dado forma al campo de la inteligencia artificial.
+      </p>
+    </div>
+  </div>
+
+  <!-- GRID DE AUTORES: 5 perfiles de científicos destacados en IA -->
+  <!-- Cada artículo contiene foto, biografía y contribuciones clave -->
+  <div class="dashboard-author-grid">
+      <article class="author-profile author-color-1 card-hover border-glow">
+        <div class="author-media">
+          <img src="{% static 'img/hinton.png' %}" alt="Geoffrey Hinton" />
+        </div>
+        <div class="author-content">
+          <div class="author-header">
+            <div>
+              <p class="author-years">Nacido en 1947, Londres, Reino Unido</p>
+              <h2>Geoffrey Hinton</h2>
+              <p class="author-role">El Padrino del Deep Learning</p>
+              <div class="author-tags" style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; font-size: 0.85rem; font-family: var(--font-mono);">
+                <span style="color: oklch(0.72 0.22 150); border: 1px solid oklch(0.72 0.22 150); border-radius: 6px; padding: 0.4rem 0.8rem;">Deep Learning</span>
+                <span style="color: oklch(0.72 0.22 150); border: 1px solid oklch(0.72 0.22 150); border-radius: 6px; padding: 0.4rem 0.8rem;">Backpropagation</span>
+                <span style="color: oklch(0.72 0.22 150); border: 1px solid oklch(0.72 0.22 150); border-radius: 6px; padding: 0.4rem 0.8rem;">Boltzmann Machines</span>
+              </div>
+            </div>
+            <span class="author-award">🏅 Premio Turing 2018</span>
+          </div>
+          <p class="author-bio">Considerado el "Padrino del Deep Learning", Geoffrey Hinton es el científico más influyente en el desarrollo de las redes neuronales profundas. Trabajó durante décadas en la Universidad de Toronto y luego en Google Brain, cuando el deep learning era ignorado por la comunidad científica.</p>
+          <h3 class="author-contributions-title">Contribuciones Clave</h3>
+          <div class="author-list">
+              <p><span class="bullet-green">•</span> Popularizó el algoritmo de retropropagación (backpropagation) en 1986, que es la base del entrenamiento de redes neuronales modernas.</p>
+              <p><span class="bullet-green">•</span> Desarrolló las Máquinas de Boltzmann Restringidas (RBM) y el Preentrenamiento No Supervisado, técnicas cruciales para el aprendizaje profundo.</p>
+              <p><span class="bullet-green">•</span> En 2012, su equipo creó AlexNet, que revolucionó el campo al ganar la competencia ImageNet con un margen histórico usando GPU y deep learning.</p>
+              <p><span class="bullet-green">•</span> En 2023, dejó Google para hablar libremente sobre los riesgos existenciales de la IA. En 2024, recibió el Premio Nobel de Física por sus contribuciones.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="author-profile author-color-2 card-hover border-glow">
+        <div class="author-media">
+          <img src="{% static 'img/lee.png' %}" alt="Yann LeCun" />
+        </div>
+        <div class="author-content">
+          <div class="author-header">
+            <div>
+              <p class="author-years">Nacido en 1960, París, Francia</p>
+              <h2>Yann LeCun</h2>
+              <p class="author-role">Padre de las Redes Convolucionales</p>
+              <div class="author-tags" style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; font-size: 0.85rem; font-family: var(--font-mono);">
+                <span style="color: oklch(0.69 0.22 220); border: 1px solid oklch(0.69 0.22 220); border-radius: 6px; padding: 0.4rem 0.8rem;">CNN</span>
+                <span style="color: oklch(0.69 0.22 220); border: 1px solid oklch(0.69 0.22 220); border-radius: 6px; padding: 0.4rem 0.8rem;">Computer Vision</span>
+                <span style="color: oklch(0.69 0.22 220); border: 1px solid oklch(0.69 0.22 220); border-radius: 6px; padding: 0.4rem 0.8rem;">Self-Supervised Learning</span>
+              </div>
+            </div>
+            <span class="author-award">🏅 Premio Turing 2018</span>
+          </div>
+          <p class="author-bio">Yann LeCun es el creador de las Redes Neuronales Convolucionales (CNN), la arquitectura que transformó la visión por computadora. Actualmente es Chief AI Scientist de Meta y profesor en la Universidad de Nueva York.</p>
+          <h3 class="author-contributions-title">Contribuciones Clave</h3>
+          <div class="author-list">
+              <p><span class="bullet-green">•</span> Desarrolló LeNet-5 en 1998 para el reconocimiento de dígitos escritos a mano, la primera CNN práctica aplicada al mundo real por los bancos para leer cheques.</p>
+              <p><span class="bullet-green">•</span> Sus investigaciones sentaron las bases de toda la visión computacional moderna: reconocimiento facial, coches autónomos y diagnóstico médico.</p>
+              <p><span class="bullet-green">•</span> Promueve el aprendizaje autosupervisado (self-supervised learning) como el camino hacia la inteligencia general artificial.</p>
+              <p><span class="bullet-green">•</span> Dirige el laboratorio FAIR (Fundamental AI Research) de Meta, uno de los más productivos del mundo.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="author-profile author-color-3 card-hover border-glow">
+        <div class="author-media">
+          <img src="{% static 'img/yoshua.png' %}" alt="Yoshua Bengio" />
+        </div>
+        <div class="author-content">
+          <div class="author-header">
+            <div>
+              <p class="author-years">Nacido en 1964, París, Francia</p>
+              <h2>Yoshua Bengio</h2>
+              <p class="author-role">Pionero del Aprendizaje Profundo</p>
+              <div class="author-tags" style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; font-size: 0.85rem; font-family: var(--font-mono);">
+                <span style="color: oklch(0.65 0.22 280); border: 1px solid oklch(0.65 0.22 280); border-radius: 6px; padding: 0.4rem 0.8rem;">NLP</span>
+                <span style="color: oklch(0.65 0.22 280); border: 1px solid oklch(0.65 0.22 280); border-radius: 6px; padding: 0.4rem 0.8rem;">Generative Models</span>
+                <span style="color: oklch(0.65 0.22 280); border: 1px solid oklch(0.65 0.22 280); border-radius: 6px; padding: 0.4rem 0.8rem;">AI Safety</span>
+              </div>
+            </div>
+            <span class="author-award">🏅 Premio Turing 2018</span>
+          </div>
+          <p class="author-bio">Yoshua Bengio es uno de los tres "Godfathers of AI" junto con Hinton y LeCun. Profesor en la Universidad de Montreal y fundador del MILA (Montreal Institute for Learning Algorithms), es conocido por su trabajo en procesamiento de lenguaje natural y modelos generativos.</p>
+          <h3 class="author-contributions-title">Contribuciones Clave</h3>
+          <div class="author-list">
+              <p><span class="bullet-green">•</span> Realizó avances fundamentales en el aprendizaje de representaciones del lenguaje con modelos de lenguaje neurales, precursores de GPT y BERT.</p>
+              <p><span class="bullet-green">•</span> Introdujo el mecanismo de atención en redes recurrentes, un precursor directo de la arquitectura Transformer que impulsa modelos como ChatGPT.</p>
+              <p><span class="bullet-green">•</span> Su trabajo en redes generativas sentó bases para los modernos modelos de difusión y los grandes modelos de lenguaje (LLMs).</p>
+              <p><span class="bullet-green">•</span> Es un defensor activo de la regulación de la IA y de la investigación en seguridad de IA (AI Safety).</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="author-profile author-color-4 card-hover border-glow">
+        <div class="author-media">
+          <img src="{% static 'img/ng.png' %}" alt="Andrew Ng" />
+        </div>
+        <div class="author-content">
+          <div class="author-header">
+            <div>
+              <p class="author-years">Nacido en 1976, Londres, Reino Unido</p>
+              <h2>Andrew Ng</h2>
+              <p class="author-role">El Gran Educador de la IA</p>
+              <div class="author-tags" style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; font-size: 0.85rem; font-family: var(--font-mono);">
+                <span style="color: oklch(0.70 0.22 40); border: 1px solid oklch(0.70 0.22 40); border-radius: 6px; padding: 0.4rem 0.8rem;">Machine Learning</span>
+                <span style="color: oklch(0.70 0.22 40); border: 1px solid oklch(0.70 0.22 40); border-radius: 6px; padding: 0.4rem 0.8rem;">AI Education</span>
+                <span style="color: oklch(0.70 0.22 40); border: 1px solid oklch(0.70 0.22 40); border-radius: 6px; padding: 0.4rem 0.8rem;">DeepLearning.AI</span>
+              </div>
+            </div>
+            <span class="author-award">🏅 Co-fundador de Coursera</span>
+          </div>
+          <p class="author-bio">Andrew Ng es uno de los divulgadores y educadores de IA más influyentes del mundo. Cofundador de Google Brain y Coursera, y fundador de DeepLearning.AI, ha sido fundamental en democratizar el acceso a la educación en inteligencia artificial.</p>
+          <h3 class="author-contributions-title">Contribuciones Clave</h3>
+          <div class="author-list">
+              <p><span class="bullet-green">•</span> Fundó Google Brain en 2011, el laboratorio de investigación en deep learning de Google que impulsó productos como Google Search, Translate y Photos.</p>
+              <p><span class="bullet-green">•</span> Fue Director de IA en Baidu, donde desarrolló sistemas de reconocimiento de voz y conducción autónoma.</p>
+              <p><span class="bullet-green">•</span> Lanzó en Coursera cursos de Machine Learning con más de 5 millones de estudiantes, convirtiéndose en el material educativo más popular de la IA.</p>
+              <p><span class="bullet-green">•</span> Fundó DeepLearning.AI y AI Fund para democratizar la IA y preparar a la fuerza laboral global para la revolución de la IA.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="author-profile author-color-5 card-hover border-glow">
+        <div class="author-media">
+          <img src="{% static 'img/fei.png' %}" alt="Fei-Fei Li" />
+        </div>
+        <div class="author-content">
+          <div class="author-header">
+            <div>
+              <p class="author-years">Nacida en 1976, Pekín, China</p>
+              <h2>Fei-Fei Li</h2>
+              <p class="author-role">Pionera de la Visión por Computadora</p>
+              <div class="author-tags" style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; font-size: 0.85rem; font-family: var(--font-mono);">
+                <span style="color: oklch(0.65 0.22 340); border: 1px solid oklch(0.65 0.22 340); border-radius: 6px; padding: 0.4rem 0.8rem;">Computer Vision</span>
+                <span style="color: oklch(0.65 0.22 340); border: 1px solid oklch(0.65 0.22 340); border-radius: 6px; padding: 0.4rem 0.8rem;">ImageNet</span>
+                <span style="color: oklch(0.65 0.22 340); border: 1px solid oklch(0.65 0.22 340); border-radius: 6px; padding: 0.4rem 0.8rem;">AI for Good</span>
+              </div>
+            </div>
+            <span class="author-award">🏅 Directora del Stanford HAI</span>
+          </div>
+          <p class="author-bio">Fei-Fei Li es la creadora de ImageNet, el conjunto de datos que catalizó la revolución del deep learning. Profesora en Stanford y codirectora del Instituto de Inteligencia Artificial Centrada en el Ser Humano (HAI), es una voz líder en IA ética e inclusiva.</p>
+          <h3 class="author-contributions-title">Contribuciones Clave</h3>
+          <div class="author-list">
+              <p><span class="bullet-green">•</span> Creó ImageNet (2009): una base de datos de 14 millones de imágenes etiquetadas que permitió el entrenamiento de redes profundas y desencadenó la revolución del deep learning.</p>
+              <p><span class="bullet-green">•</span> Organizó el ImageNet Large Scale Visual Recognition Challenge (ILSVRC), la competencia que dio a conocer AlexNet y transformó la IA.</p>
+              <p><span class="bullet-green">•</span> Fue Chief Scientist de AI/ML en Google Cloud (2017-2018), democratizando el acceso a herramientas de IA empresarial.</p>
+              <p><span class="bullet-green">•</span> Defiende activamente la diversidad en IA, el uso responsable de la tecnología y las aplicaciones de la IA para el bien social (educación, salud, clima).</p>
+          </div>
+        </div>
+      </article>
+  </div>
+</div>
+{% endblock %}

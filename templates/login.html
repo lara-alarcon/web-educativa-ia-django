@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% comment %}
+===============================================
+PÁGINA DE AUTENTICACIÓN — LOGIN / REGISTRO
+===============================================
+
+Página unificada para autenticación de usuarios con dos modos:
+
+1. MODO LOGIN: Inicio de sesión para usuarios existentes
+   - Campos: email, contraseña, "recordarme"
+   - Validación: Verifica credenciales en BD
+   - Funcionalidad: Toggle de contraseña (mostrar/ocultar)
+   - Enlace: Recuperación de contraseña
+
+2. MODO REGISTER: Registro de nuevos usuarios
+   - Campos: nombre, email, contraseña, confirmar contraseña
+   - Validación: Email único, contraseñas coinciden
+   - Crea cuenta y autentica automáticamente
+   - Toggle de contraseña en ambos campos
+
+CARACTERÍSTICAS:
+- Tabs para cambiar entre login y registro sin recargar
+- Muestra errores de validación en tiempo real
+- Responsive design: se adapta a móvil y desktop
+- Glassmorphism: efecto visual moderno y elegante
+- Iconos de marca (Lucide)
+
+SEGURIDAD:
+- CSRF protection: Token CSRF en cada formulario
+- Contraseñas hasheadas: Nunca se guardan en texto plano
+- Validación servidor: Los errores se manejan en views.py
+
+JAVASCRIPT ASOCIADO:
+- archivo: static/js/auth.js
+- Maneja: Cambio de tabs, toggle de contraseña
+{% endcomment %}
+{% block title %}{% if mode == 'register' %}Registrarse{% else %}Iniciar sesión{% endif %} — IA Educativa{% endblock %}
+{% block content %}
+<!-- Contenedor de autenticación con fondo gradiente -->
+<div class="auth-shell grid-bg">
+  <div class="auth-card">
+    <a href="/" class="back-link">← Volver al inicio</a>
+
+    <div class="auth-panel">
+      <div class="auth-logo" style="display: flex; flex-direction: column; gap: 1rem; align-items: center; text-align: center; margin-bottom: 2rem;">
+        <i data-lucide="cpu" style="width: 2.5rem; height: 2.5rem; color: oklch(0.72 0.22 150); flex-shrink: 0;"></i>
+        <p class="auth-logo-label">Plataforma Educativa</p>
+        <h1 class="auth-logo-title"><span style="color: oklch(0.72 0.22 150);">IA</span><span class="text-foreground">.edu</span></h1>
+      </div>
+
+      <!-- TABS: Cambiar entre Login y Registro -->
+    <!-- El script auth.js controla el cambio de tabs sin recargar -->
+    <div class="auth-tabs" data-auth-tabs>
+        <button type="button" class="auth-tab{% if mode == 'login' %} active{% endif %}" data-auth-mode="login">Iniciar sesión</button>
+        <button type="button" class="auth-tab{% if mode == 'register' %} active{% endif %}" data-auth-mode="register">Registrarse</button>
+      </div>
+
+      <!-- FORMULARIOS: Login y Registro en la misma página -->
+      <div class="auth-forms">
+        <!-- FORMULARIO 1: LOGIN DE USUARIO EXISTENTE -->
+        <form id="login-form" method="post" class="auth-form{% if mode != 'login' %} hidden{% endif %}">
+          {% csrf_token %}
+          <input type="hidden" name="form_type" value="login" />
+          <div class="form-field">
+            <label>Correo electrónico</label>
+            {{ login_form.email }}
+            {% if login_form.email.errors %}
+              <p class="field-error">{{ login_form.email.errors.0 }}</p>
+            {% endif %}
+          </div>
+          <div class="form-field form-field-password">
+            <label>Contraseña</label>
+            {{ login_form.password }}
+            <button type="button" class="password-toggle" data-toggle-target="#login-form input[name='password']">👁</button>
+            {% if login_form.password.errors %}
+              <p class="field-error">{{ login_form.password.errors.0 }}</p>
+            {% endif %}
+          </div>
+          {% if login_form.non_field_errors %}
+            <p class="field-error">{{ login_form.non_field_errors.0 }}</p>
+          {% endif %}
+          <div class="remember-row">
+            <label class="checkbox-label">
+              {{ login_form.remember_me }}
+              Recordarme
+            </label>
+            <a href="{% url 'password_reset_request' %}" class="text-secondary">¿Olvidaste tu contraseña?</a>
+          </div>
+          
+          <button type="submit" class="button {% if mode == 'login' %}button-primary glow-green{% else %}button-secondary{% endif %}" id="login-submit">Iniciar sesión</button>
+        </form>
+
+        <!-- FORMULARIO 2: REGISTRO DE NUEVO USUARIO -->
+        <form id="register-form" method="post" class="auth-form{% if mode != 'register' %} hidden{% endif %}">
+          {% csrf_token %}
+          <input type="hidden" name="form_type" value="register" />
+          <div class="form-field">
+            <label>Nombre completo</label>
+            {{ register_form.name }}
+            {% if register_form.name.errors %}
+              <p class="field-error">{{ register_form.name.errors.0 }}</p>
+            {% endif %}
+          </div>
+          <div class="form-field">
+            <label>Correo electrónico</label>
+            {{ register_form.email }}
+            {% if register_form.email.errors %}
+              <p class="field-error">{{ register_form.email.errors.0 }}</p>
+            {% endif %}
+          </div>
+          <div class="form-field form-field-password">
+            <label>Contraseña</label>
+            {{ register_form.password }}
+            <button type="button" class="password-toggle" data-toggle-target="#register-form input[name='password']">👁</button>
+            {% if register_form.password.errors %}
+              <p class="field-error">{{ register_form.password.errors.0 }}</p>
+            {% endif %}
+          </div>
+          <div class="form-field form-field-password">
+            <label>Confirmar contraseña</label>
+            {{ register_form.confirm_password }}
+            <button type="button" class="password-toggle" data-toggle-target="#register-form input[name='confirm_password']">👁</button>
+            {% if register_form.confirm_password.errors %}
+              <p class="field-error">{{ register_form.confirm_password.errors.0 }}</p>
+            {% endif %}
+          </div>
+          {% if register_form.non_field_errors %}
+            <p class="field-error">{{ register_form.non_field_errors.0 }}</p>
+          {% endif %}
+          
+          <button type="submit" class="button {% if mode == 'register' %}button-primary glow-green{% else %}button-secondary{% endif %}" id="register-submit">Crear cuenta</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/auth.js' %}"></script>
+{% endblock %}

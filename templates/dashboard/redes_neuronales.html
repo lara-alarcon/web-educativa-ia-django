@@ -1,0 +1,191 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% comment %}
+===============================================
+MÓDULO 02: REDES NEURONALES ARTIFICIALES
+===============================================
+
+Página educativa sobre fundamentos de redes neuronales artificiales.
+
+CONTENIDO:
+1. Definición: Qué son las redes neuronales
+2. Inspiración biológica: Comparación cerebro vs máquinas
+   - Neurona biológica vs artificial
+   - Sinapsis vs pesos
+   - Potencial de acción vs función de activación
+   - Aprendizaje biológico vs artificial
+3. Proceso de aprendizaje: 5 pasos del entrenamiento
+   1. Entrada de datos
+   2. Propagación hacia adelante (forward pass)
+   3. Cálculo del error (loss)
+   4. Retropropagación (backpropagation)
+   5. Actualización de pesos (weight update)
+4. Concepto clave: Gradiente Descendente
+   - Fórmula matemática: w_nuevo = w_actual − α × ∂L/∂w
+   - Explicación del algoritmo
+
+OBJETIVOS DE APRENDIZAJE:
+- Entender la arquitectura de redes neuronales
+- Conocer la inspiración biológica
+- Comprender el proceso de aprendizaje
+- Aprender sobre el algoritmo de backpropagation
+
+VISUALES INCLUIDOS:
+- Imagen de red neuronal (neural-network.jpg)
+- 4 cards de comparación biológica
+- 5 pasos numerados del entrenamiento
+- Fórmula matemática del gradiente
+
+REQUISITO: Usuario debe estar autenticado
+{% endcomment %}
+{% block dashboard_content %}
+<!-- Contenedor de la página del dashboard -->
+<div class="dashboard-page">
+  <!-- ENCABEZADO: Módulo 02, título y descripción -->
+  <div class="dashboard-header">
+    <div>
+      <p class="dashboard-module">Módulo 02</p>
+      <h1>Redes <span class="text-primary">Neuronales</span> Artificiales</h1>
+      <p class="dashboard-subtitle">
+        Las redes neuronales artificiales son sistemas computacionales inspirados en la estructura y funcionamiento del cerebro humano, capaces de aprender patrones complejos a partir de datos.
+      </p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: Definición de redes neuronales -->
+  <div class="dashboard-block">
+    <h2>¿Qué son las Redes Neuronales?</h2>
+    <p>
+      Una <strong>red neuronal artificial</strong> es un modelo computacional compuesto por capas de unidades matemáticas simples llamadas neuronas artificiales o nodos. Estas unidades están interconectadas mediante parámetros ajustables llamados pesos sinápticos, que determinan la fuerza de la señal que pasa entre neuronas.
+    </p>
+    <p>
+      La arquitectura típica consta de tres tipos de capas: la capa de entrada, que recibe los datos; las capas ocultas, que extraen características y representaciones progresivamente más abstractas; y la capa de salida, que produce el resultado final (una clasificación, un valor numérico, o una distribución de probabilidad).
+    </p>
+    <p>
+      La magia de las redes neuronales reside en su capacidad de aprender automáticamente representaciones útiles de los datos, eliminando la necesidad de que los ingenieros diseñen manualmente las características relevantes. Esta propiedad las hace extraordinariamente versátiles.
+    </p>
+  </div>
+
+  <!-- IMAGEN: Visualización de red neuronal -->
+  <div class="dashboard-image-card dashboard-image-small">
+    <img src="{% static 'img/neural-network.jpg' %}" alt="Red neuronal" />
+  </div>
+
+  <div class="dashboard-image-caption" style="text-align: center; margin-top: 0.3rem;">
+    <p class="caption-label" style="color: oklch(0.72 0.22 150); font-size: 0.85rem;">VISUALIZACIÓN</p>
+    <p style="font-size: 0.85rem;">Flujo de información en una red neuronal multicapa: entrada → capas ocultas → salida.</p>
+  </div>
+
+  <!-- SECCIÓN 2: Analogía biológica -->
+  <div class="dashboard-block">
+    <h2>Inspiración Biológica: Cerebro vs. Red Neuronal</h2>
+    <p>
+      El cerebro humano contiene aproximadamente 86 mil millones de neuronas conectadas por más de 100 billones de sinapsis. Las redes neuronales artificiales simulan este principio a escala mucho menor, pero con resultados sorprendentes:
+    </p>
+  </div>
+
+  <!-- GRID 2x2: Comparación biológica vs artificial en 4 aspectos -->
+  <div class="dashboard-grid">
+      <article class="dashboard-card card-hover border-glow">
+        <div style="display: flex; gap: 1rem;">
+          <svg style="width: 2rem; height: 2rem; flex-shrink: 0; color: oklch(0.69 0.22 220); stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          <div style="flex: 1;">
+            <p style="color: oklch(0.72 0.22 150); font-weight: 600; font-size: 0.75rem; margin: 0;">BIOLÓGICO</p>
+            <h3 style="color: white; margin: 0.3rem 0 0.8rem 0; font-size: 1rem;">Neurona biológica</h3>
+            <p style="color: oklch(0.72 0.22 150); font-weight: 600; font-size: 0.75rem; margin-bottom: 0.3rem;">ARTIFICIAL</p>
+            <p style="color: white; font-size: 1rem; margin: 0;">Neurona artificial (perceptrón)</p>
+          </div>
+        </div>
+      </article>
+      <article class="dashboard-card card-hover border-glow">
+        <div style="display: flex; gap: 1rem;">
+          <svg style="width: 2rem; height: 2rem; flex-shrink: 0; color: oklch(0.69 0.22 220); stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z"></path></svg>
+          <div style="flex: 1;">
+            <p style="color: oklch(0.72 0.22 150); font-weight: 600; font-size: 0.75rem; margin: 0;">BIOLÓGICO</p>
+            <h3 style="color: white; margin: 0.3rem 0 0.8rem 0; font-size: 1rem;">Sinapsis</h3>
+            <p style="color: oklch(0.72 0.22 150); font-weight: 600; font-size: 0.75rem; margin-bottom: 0.3rem;">ARTIFICIAL</p>
+            <p style="color: white; font-size: 1rem; margin: 0;">Peso (weight) de la conexión</p>
+          </div>
+        </div>
+      </article>
+      <article class="dashboard-card card-hover border-glow">
+        <div style="display: flex; gap: 1rem;">
+          <svg style="width: 2rem; height: 2rem; flex-shrink: 0; color: oklch(0.69 0.22 220); stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6" rx="1"></rect><path d="M9 5V4M15 5V4M9 20v1M15 20v1M5 9H4M5 15H4M20 9h1M20 15h1"></path></svg>
+          <div style="flex: 1;">
+            <p style="color: oklch(0.72 0.22 150); font-weight: 600; font-size: 0.75rem; margin: 0;">BIOLÓGICO</p>
+            <h3 style="color: white; margin: 0.3rem 0 0.8rem 0; font-size: 1rem;">Potencial de acción</h3>
+            <p style="color: oklch(0.72 0.22 150); font-weight: 600; font-size: 0.75rem; margin-bottom: 0.3rem;">ARTIFICIAL</p>
+            <p style="color: white; font-size: 1rem; margin: 0;">Función de activación (ReLU, Sigmoid)</p>
+          </div>
+        </div>
+      </article>
+      <article class="dashboard-card card-hover border-glow">
+        <div style="display: flex; gap: 1rem;">
+          <svg style="width: 2rem; height: 2rem; flex-shrink: 0; color: oklch(0.69 0.22 220); stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"></path><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"></path></svg>
+          <div style="flex: 1;">
+            <p style="color: oklch(0.72 0.22 150); font-weight: 600; font-size: 0.75rem; margin: 0;">BIOLÓGICO</p>
+            <h3 style="color: white; margin: 0.3rem 0 0.8rem 0; font-size: 1rem;">Aprendizaje por experiencia</h3>
+            <p style="color: oklch(0.72 0.22 150); font-weight: 600; font-size: 0.75rem; margin-bottom: 0.3rem;">ARTIFICIAL</p>
+            <p style="color: white; font-size: 1rem; margin: 0;">Entrenamiento con datos y gradiente</p>
+          </div>
+        </div>
+      </article>
+  </div>
+
+  <!-- SECCIÓN 3: Proceso de aprendizaje -->
+  <div class="dashboard-block">
+    <h2>¿Cómo Aprenden las Redes Neuronales?</h2>
+    <p>
+      El aprendizaje en redes neuronales ocurre a través de un proceso iterativo llamado entrenamiento supervisado, donde la red ajusta sus pesos internos para minimizar el error en sus predicciones:
+    </p>
+    <!-- LISTA NUMERADA: 5 pasos del entrenamiento de redes neuronales -->
+    <div class="dashboard-step-list">
+        <div class="dashboard-step">
+          <span class="step-number">01</span>
+          <div>
+            <h3>Entrada de Datos</h3>
+            <p>La red recibe datos de entrada (imágenes, texto, números). Cada dato se transforma en valores numéricos que fluyen hacia la capa de entrada.</p>
+          </div>
+        </div>
+        <div class="dashboard-step">
+          <span class="step-number">02</span>
+          <div>
+            <h3>Propagación Hacia Adelante</h3>
+            <p>Los datos atraviesan capas ocultas. En cada neurona, se calculan sumas ponderadas y se aplican funciones de activación que determinan si la neurona "se dispara".</p>
+          </div>
+        </div>
+        <div class="dashboard-step">
+          <span class="step-number">03</span>
+          <div>
+            <h3>Cálculo del Error</h3>
+            <p>La salida de la red se compara con el resultado esperado. La diferencia (pérdida o loss) mide qué tan equivocada está la red en su predicción.</p>
+          </div>
+        </div>
+        <div class="dashboard-step">
+          <span class="step-number">04</span>
+          <div>
+            <h3>Retropropagación</h3>
+            <p>El error se propaga hacia atrás por la red. Usando cálculo diferencial (gradiente descendente), se determina cuánto debe cambiar cada peso para reducir el error.</p>
+          </div>
+        </div>
+        <div class="dashboard-step">
+          <span class="step-number">05</span>
+          <div>
+            <h3>Actualización de Pesos</h3>
+            <p>Los pesos sinápticos se ajustan levemente según el gradiente calculado. Este proceso se repite miles o millones de veces hasta que la red aprende el patrón.</p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- CARD DESTACADA: Concepto clave sobre gradiente descendente -->
+  <div class="dashboard-highlight-card">
+    <p class="highlight-title">Concepto clave: Gradiente Descendente</p>
+    <p>
+      El algoritmo de retropropagación (backpropagation), popularizado por Geoffrey Hinton en 1986, calcula el gradiente de la función de pérdida con respecto a cada peso de la red. Usando este gradiente, los pesos se actualizan en la dirección opuesta al gradiente (descenso de gradiente) para minimizar el error. Este proceso, repetido durante miles de iteraciones sobre millones de ejemplos de entrenamiento, permite a la red aprender representaciones increíblemente complejas del mundo.
+    </p>
+    <div class="highlight-formula">w_nuevo = w_actual − α × ∂L/∂w</div>
+  </div>
+</div>
+{% endblock %}
