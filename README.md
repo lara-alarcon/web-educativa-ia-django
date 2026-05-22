@@ -20,6 +20,24 @@ La aplicación incluye:
 
 ---
 
+## Flujo de Desarrollo y Adopción de IA (Migración Eficiente)
+
+El paso del concepto a la producción se realizó aplicando un flujo de trabajo moderno de desarrollo asistido por Inteligencia Artificial (AI-Assisted Development):
+
+* **Fase 1: Prototipado No-Code (v0 de Vercel):** Se generó la interfaz visual, la distribución de componentes y el diseño responsive inicial utilizando lenguaje natural en la herramienta v0 de Vercel, obteniendo un producto mínimo viable estático de alta fidelidad.
+* **Fase 2: Exportación y Preparación:** El prototipo se descargó en formato .zip desde la plataforma de v0 y se cargó de forma local en el entorno de desarrollo Visual Studio Code.
+* **Fase 3: Ingeniería de Prompts y Migración Full-Stack (GitHub Copilot):** Utilizando GitHub Copilot (potenciado por los modelos de la familia Claude 3.5), se guió a la IA mediante prompts arquitectónicos para fragmentar el HTML estático, estructurar el backend en Python, diseñar el sistema de rutas del patrón MVT de Django y construir la lógica de autenticación segura.
+
+---
+### Enlaces del Proyecto
+
+Para contrastar la evolución del proyecto desde su concepción visual hasta su despliegue funcional, se pueden consultar ambas instancias:
+
+> **Fase 1 (Prototipo Estático No-Code):** https://prototipo-web-v0.vercel.app
+> 
+> **Fase 2 (Aplicación Django Full-Stack):** https://web-educativa-ia-django.vercel.app
+---
+
 ## Arquitectura y Tecnologías (Patrón MVT)
 
 Para garantizar una experiencia segura y escalable, la aplicación fue estructurada utilizando el patrón **Modelo-Vista-Plantilla (MVT)** de Django:
